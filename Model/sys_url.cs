@@ -15,5 +15,7 @@ namespace Model
         public string html { get; set; }
         public int depth { get; set; }
 
+        public string find_key { get; set; }
+
     }
 }

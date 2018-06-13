@@ -48,8 +48,12 @@ namespace CheckerImp
                 {
                     all_list.Add(url);
                     url.html = web_finder.Get_Html(url.url);
-                    if (keys.Where(t => url.html.Contains(t)).Count() > 0)
+                    var t_list = keys.Where(t => url.html.Contains(t));
+                    if (t_list.Count() > 0)
                     {
+                        var _keys = "";
+                        t_list.ToList().ForEach(t => _keys = _keys + t + ",");
+                        url.find_key = _keys;
                         finded_list.Add(url);
                     }
                     List<sys_url> urls_list = web_finder.Get_Link_List(url);
@@ -59,13 +63,13 @@ namespace CheckerImp
                         add_sub(item);
                     }
                 }
-                foreach (var item in all_list)
+                /*foreach (var item in all_list)
                 {
                     Utility.WriteLog(url_log_path, log1, item.id.ToString() + "\t" + item.pid.ToString() + "\t" + item.url);
-                }
+                }*/
                 foreach (var item in finded_list)
                 {
-                    Utility.WriteLog(url_log_path, log2, item.id.ToString() + "\t" + item.pid.ToString() + "\t" + item.url);
+                    Utility.WriteLog(url_log_path, log2, item.id.ToString() + "\t" + item.pid.ToString() + "\t" + item.url+"\t"+item.find_key);
                 }
                 //
                 Utility.WriteFile("hourcheck  " + ts.TotalHours.ToString() + "小时");
@@ -78,8 +82,12 @@ namespace CheckerImp
             if (depth <= Checker_Config.Check_Depth)
             {
                 entity.html = web_finder.Get_Html(entity.url);
-                if (keys.Where(t => entity.html.Contains(t)).Count() > 0)
+                var t_list = keys.Where(t => entity.html.Contains(t));
+                if (t_list.Count() > 0)
                 {
+                    var _keys = "";
+                    t_list.ToList().ForEach(t => _keys = _keys + t + ",");
+                    entity.find_key = _keys;
                     finded_list.Add(entity);
                 }
                 List<sys_url> sublist = web_finder.Get_Link_List(entity);
