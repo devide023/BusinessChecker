@@ -46,6 +46,7 @@ namespace CheckerImp
                 urllist.ToList().ForEach(t=>list.Add(new sys_url {domain=t,pid=0,url=t,depth=0}));
                 foreach (var url in list)
                 {
+                    Utility.WriteFile("---------开始检查"+url.url+"-----------");
                     all_list.Add(url);
                     url.html = web_finder.Get_Html(url.url);
                     var t_list = keys.Where(t => url.html.Contains(t));
@@ -62,6 +63,7 @@ namespace CheckerImp
                     {
                         add_sub(item);
                     }
+                    Utility.WriteFile("---------结束检查" + url.url + "-----------");
                 }
                 /*foreach (var item in all_list)
                 {
