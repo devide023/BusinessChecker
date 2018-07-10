@@ -13,8 +13,8 @@ namespace CheckerImp.Services
         private KeyWord_WebChecker _web_checker = new KeyWord_WebChecker();
         private List<string> _check_url_list = new List<string>();
         private List<string> _checked_list = new List<string>();
-        private string _url_list_path = Checker_Config.TaskPath + @"urllist\urls.txt";
-        private string _checked_url_path = Checker_Config.TaskPath + @"urllist\checked_urls.txt";
+        private string _url_list_path = Checker_Config.TaskPath + @"\urllist\urls.txt";
+        private string _checked_url_path = Checker_Config.TaskPath + @"\urllist\checked_urls.txt";
         public WebCheck_Service()
         {
             _check_url_list = Utility.Read_File_Line(_url_list_path).ToList();
