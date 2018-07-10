@@ -12,6 +12,8 @@ using System.ComponentModel.Composition;
 using CheckerInterface;
 using System.Configuration;
 using System.ComponentModel.Composition.Hosting;
+using CheckerImp;
+using CheckerImp.Services;
 
 namespace BusinessChecker
 {    
@@ -56,7 +58,9 @@ namespace BusinessChecker
             try
             {
                 InitConifg();
-                //
+                //网站关键字检查
+                WebCheck_Service ws = new WebCheck_Service();
+                //定时任务检查
                 time_count.Elapsed += Time_count_Elapsed;
                 time_count.Enabled = true;
                 time_count.Start();
@@ -66,6 +70,11 @@ namespace BusinessChecker
             {
                 Utility.WriteFile(e.Message);
             }
+        }
+
+        private void Webcheck_Complete_Check(object sender, CheckArgs args)
+        {
+            Utility.WriteFile("---------结束检查" + args.web_entity.url + "-----------");
         }
 
         private void Time_count_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

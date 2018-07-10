@@ -14,7 +14,6 @@ namespace KeyWords.BLL
     public class Finder
     {
         private int row_id = 1;
-        private SqlHelper SH = new SqlHelper("LocalConn");
         public Finder()
         {
 
@@ -79,21 +78,5 @@ namespace KeyWords.BLL
             }
             return list;
         }
-
-        public int Save_Urls(sys_url entity)
-        {
-            StringBuilder sql = new StringBuilder();
-            sql.Append("INSERT INTO dbo.sys_keywords \n");
-            sql.Append("        ( domain, url, cid, cpid, html ) \n");
-            sql.AppendFormat("VALUES  ( N'{0}', -- domain - nvarchar(1000) \n",entity.domain);
-            sql.AppendFormat("          N'{0}', -- url - nvarchar(1000) \n", entity.url);
-            sql.AppendFormat("          {0}, -- cid - int \n", entity.id);
-            sql.AppendFormat("          {0}, -- cpid - int \n", entity.pid);
-            sql.AppendFormat("          N'{0}'  -- html - nvarchar(max) \n", entity.html.Replace("\'","\'\'"));
-            sql.AppendFormat("          );\n");
-            return SH.Execute_SQL(sql.ToString());
-        }
-   
-
     }
 }

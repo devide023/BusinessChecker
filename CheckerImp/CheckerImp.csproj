@@ -54,8 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessDb\AccessDB.cs" />
     <Compile Include="Finder.cs" />
+    <Compile Include="KeyWordChecker.cs" />
     <Compile Include="KeyWordFinder.cs" />
+    <Compile Include="Services\WebCheck_Service.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="YearCheck.cs" />
     <Compile Include="MonthCheck.cs" />

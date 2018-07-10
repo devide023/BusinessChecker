@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckArg.cs" />
     <Compile Include="Checker_Config.cs" />
     <Compile Include="Checker_Timer.cs" />
     <Compile Include="ExportItem.cs" />

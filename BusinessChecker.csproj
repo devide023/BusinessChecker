@@ -90,6 +90,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="database\check.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="task\keywords\keywords.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
