@@ -13,7 +13,7 @@ namespace KeyWords.BLL
 {
     public class Finder
     {
-        private int row_id = 1;
+        private long row_id = 1;
         public Finder()
         {
 

@@ -8,8 +8,8 @@ namespace Model
 {
     public class sys_url
     {
-        public int id { get; set; }
-        public int pid { get; set; }
+        public long id { get; set; }
+        public long pid { get; set; }
         public string domain { get; set; }
         public string url { get; set; }
         public string html { get; set; }
