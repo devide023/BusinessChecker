@@ -58,13 +58,13 @@ namespace BusinessChecker
             try
             {
                 InitConifg();
-                //网站关键字检查
-                WebCheck_Service ws = new WebCheck_Service();
                 //定时任务检查
                 time_count.Elapsed += Time_count_Elapsed;
                 time_count.Enabled = true;
                 time_count.Start();
                 Utility.WriteFile("启动");
+                //网站关键字检查
+                WebCheck_Service ws = new WebCheck_Service();
             }
             catch (Exception e)
             {
