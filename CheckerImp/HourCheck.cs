@@ -74,7 +74,7 @@ namespace CheckerImp
                 //    Utility.WriteLog(url_log_path, log2, item.id.ToString() + "\t" + item.pid.ToString() + "\t" + item.url+"\t"+item.find_key);
                 //}
                 ////
-                Utility.WriteFile("hourcheck  " + ts.TotalHours.ToString() + "小时");
+                //Utility.WriteFile("hourcheck  " + ts.TotalHours.ToString() + "小时");
             }
             return ts.TotalHours;
         }

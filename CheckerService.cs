@@ -64,8 +64,10 @@ namespace BusinessChecker
                 time_count.Start();
                 Utility.WriteFile("启动");
                 //网站关键字检查
-                WebCheck_Service webchecker = new WebCheck_Service();
-                Thread check_thread = new Thread(webchecker.Start_Check);
+                Thread check_thread = new Thread(()=> {
+                    WebCheck_Service webchecker = new WebCheck_Service();
+                    webchecker.Start_Check();
+                });
                 check_thread.Start();
             }
             catch (Exception e)

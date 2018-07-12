@@ -26,7 +26,7 @@ namespace CheckerImp
         {
             all_list.Clear();
             finded_list.Clear();
-            keys = Tool.Utility.Read_File_Line(Checker_Config.TaskPath + "\\keywords\\keywords.txt");
+            keys = Tool.Utility.Read_File_Line(Checker_Config.BasePath + @"\task\keywords\keywords.txt");
             Utility.WriteFile("---------开始检查" + url + "-----------");
             sys_url entry = new sys_url();
             entry.id = 1;
