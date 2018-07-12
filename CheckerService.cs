@@ -14,7 +14,7 @@ using System.Configuration;
 using System.ComponentModel.Composition.Hosting;
 using CheckerImp;
 using CheckerImp.Services;
-
+using System.Threading;
 namespace BusinessChecker
 {    
     public partial class CheckerService : ServiceBase
@@ -65,7 +65,8 @@ namespace BusinessChecker
                 Utility.WriteFile("启动");
                 //网站关键字检查
                 WebCheck_Service webchecker = new WebCheck_Service();
-                webchecker.Start_Check();
+                Thread check_thread = new Thread(webchecker.Start_Check);
+                check_thread.Start();
             }
             catch (Exception e)
             {

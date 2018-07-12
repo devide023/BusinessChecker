@@ -79,31 +79,31 @@ namespace CheckerImp
             return ts.TotalHours;
         }
 
-        private void add_sub(sys_url entity)
-        {
-            if (depth <= Checker_Config.Check_Depth)
-            {
-                entity.html = web_finder.Get_Html(entity.url);
-                var t_list = keys.Where(t => entity.html.Contains(t));
-                if (t_list.Count() > 0)
-                {
-                    var _keys = "";
-                    t_list.ToList().ForEach(t => _keys = _keys + t + ",");
-                    entity.find_key = _keys;
-                    finded_list.Add(entity);
-                }
-                List<sys_url> sublist = web_finder.Get_Link_List(entity);
-                //去重
-                var okurl = sublist.Where(t => all_list.Where(a => a.url == t.url).Count() == 0).ToList();
-                okurl.ForEach(t => all_list.Add(t));
-                foreach (var bitem in okurl)
-                {
-                    depth++;
-                    add_sub(bitem);
-                    depth--;
-                }
-            }
-        }
+        //private void add_sub(sys_url entity)
+        //{
+        //    if (depth <= Checker_Config.Check_Depth)
+        //    {
+        //        entity.html = web_finder.Get_Html(entity.url);
+        //        var t_list = keys.Where(t => entity.html.Contains(t));
+        //        if (t_list.Count() > 0)
+        //        {
+        //            var _keys = "";
+        //            t_list.ToList().ForEach(t => _keys = _keys + t + ",");
+        //            entity.find_key = _keys;
+        //            finded_list.Add(entity);
+        //        }
+        //        List<sys_url> sublist = web_finder.Get_Link_List(entity);
+        //        //去重
+        //        var okurl = sublist.Where(t => all_list.Where(a => a.url == t.url).Count() == 0).ToList();
+        //        okurl.ForEach(t => all_list.Add(t));
+        //        foreach (var bitem in okurl)
+        //        {
+        //            depth++;
+        //            add_sub(bitem);
+        //            depth--;
+        //        }
+        //    }
+        //}
 
     }
 }
