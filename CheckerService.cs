@@ -21,16 +21,19 @@ namespace BusinessChecker
     {
         [ImportMany(typeof(IClock))]
         private IEnumerable<IClock> _Clocks { get; set; }
-
         private System.Timers.Timer time_count = new System.Timers.Timer();
         public CheckerService()
         {
             InitializeComponent();
+            //
+            string base_path = AppDomain.CurrentDomain.BaseDirectory;
+            Checker_Config.BasePath = base_path;
+            Checker_Config.TimerPath = base_path + @"\timer.ini";
+            Checker_Config.TaskPath = base_path + @"\task";
         }
 
         private void Read_Config()
         {
-            string base_path = AppDomain.CurrentDomain.BaseDirectory;
             Checker_Config.Check_Interval = (ConfigurationManager.AppSettings["interval"] != null ? ConfigurationManager.AppSettings["interval"] : "30000").ToDouble();
             Checker_Config.DateFormat = ConfigurationManager.AppSettings["dateformat"] != null ? ConfigurationManager.AppSettings["dateformat"] : "yyyy-MM-dd HH:mm:ss";
             Checker_Config.Check_Depth = (ConfigurationManager.AppSettings["check_depth"] != null ? ConfigurationManager.AppSettings["check_depth"] : "4").ToInt();
@@ -40,14 +43,11 @@ namespace BusinessChecker
             Checker_Config.Week_Interval = (ConfigurationManager.AppSettings["week_interval"] != null ? ConfigurationManager.AppSettings["week_interval"] : "1").ToDouble();
             Checker_Config.Month_Interval = (ConfigurationManager.AppSettings["month_interval"] != null ? ConfigurationManager.AppSettings["month_interval"] : "1").ToDouble();
             Checker_Config.Year_Interval = (ConfigurationManager.AppSettings["year_interval"] != null ? ConfigurationManager.AppSettings["year_interval"] : "1").ToDouble();
-            Checker_Config.TimerPath = base_path + @"\timer.ini";
-            Checker_Config.TaskPath = base_path + @"\task";
         }
         private void InitConifg()
         {
-            string base_path = AppDomain.CurrentDomain.BaseDirectory;
             Read_Config();
-            var catlog = new DirectoryCatalog(base_path);
+            var catlog = new DirectoryCatalog(Checker_Config.BasePath);
             CompositionContainer container = new CompositionContainer(catlog);
             container.ComposeParts(this);
             time_count.Interval = Checker_Config.Check_Interval;
@@ -64,17 +64,13 @@ namespace BusinessChecker
                 time_count.Start();
                 Utility.WriteFile("启动");
                 //网站关键字检查
-                WebCheck_Service ws = new WebCheck_Service();
+                WebCheck_Service webchecker = new WebCheck_Service();
+                webchecker.Start_Check();
             }
             catch (Exception e)
             {
                 Utility.WriteFile(e.Message);
             }
-        }
-
-        private void Webcheck_Complete_Check(object sender, CheckArgs args)
-        {
-            Utility.WriteFile("---------结束检查" + args.web_entity.url + "-----------");
         }
 
         private void Time_count_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

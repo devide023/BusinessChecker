@@ -8,6 +8,7 @@ namespace Model
 {
     public static class Checker_Config
     {
+        public static string BasePath { get; set; }
         /// <summary>
         /// 日志路径hao
         /// </summary>

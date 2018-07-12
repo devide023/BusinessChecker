@@ -14,11 +14,11 @@ namespace CheckerImp
     public class HourCheck : IClock
     {
         private DateTime _now;
-        private List<sys_url> all_list = new List<sys_url>();
-        private List<sys_url> finded_list = new List<sys_url>();
-        private Finder web_finder = new Finder();
-        private string[] keys = new string[] { };
-        private int depth = 0;
+        //private List<sys_url> all_list = new List<sys_url>();
+        //private List<sys_url> finded_list = new List<sys_url>();
+        //private Finder web_finder = new Finder();
+        //private string[] keys = new string[] { };
+        //private int depth = 0;
         public HourCheck()
         {
             _now = OperateIniFile.ReadIniData("hour", "time", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Checker_Config.TimerPath).ToDateTime();
@@ -74,7 +74,7 @@ namespace CheckerImp
                 //    Utility.WriteLog(url_log_path, log2, item.id.ToString() + "\t" + item.pid.ToString() + "\t" + item.url+"\t"+item.find_key);
                 //}
                 ////
-                //Utility.WriteFile("hourcheck  " + ts.TotalHours.ToString() + "小时");
+                Utility.WriteFile("hourcheck  " + ts.TotalHours.ToString() + "小时");
             }
             return ts.TotalHours;
         }
