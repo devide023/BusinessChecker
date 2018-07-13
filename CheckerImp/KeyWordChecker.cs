@@ -5,7 +5,7 @@ using System.Text;
 using Model;
 using Tool;
 using KeyWords.BLL;
-
+using System.Threading;
 namespace CheckerImp
 {
     public class KeyWord_WebChecker
@@ -28,6 +28,7 @@ namespace CheckerImp
             finded_list.Clear();
             keys = Tool.Utility.Read_File_Line(Checker_Config.BasePath + @"\task\keywords\keywords.txt");
             Utility.WriteFile("---------开始检查" + url + "-----------");
+            Thread.Sleep(5000);
             sys_url entry = new sys_url();
             entry.id = 1;
             entry.pid = 0;
